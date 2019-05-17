@@ -1,0 +1,8 @@
+prefix=/home/siobhan/PhDSims/Epuck-Swarm-ROS/catkin_ws/install
+
+Name: laser_scan
+Description: Description of laser_scan
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/siobhan/PhDSims/Epuck-Swarm-ROS/catkin_ws/install/lib 
+Requires: 

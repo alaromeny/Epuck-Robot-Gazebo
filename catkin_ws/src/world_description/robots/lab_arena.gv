@@ -1,0 +1,8 @@
+digraph G {
+node [shape=box];
+"wall_1" [label="wall_1"];
+"wall_2" [label="wall_2"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"wall_1" -> "corner1" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"corner1" -> "wall_2"
+}

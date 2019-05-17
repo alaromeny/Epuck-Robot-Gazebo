@@ -1,0 +1,582 @@
+<?xml version = "1.0" ?>
+  <robot name="epuckModified">
+    <link name="base_link"/>
+
+    <joint name= "base_link_to_main_body" type = "fixed">
+      <parent link = "base_link"/>
+      <child link = "main_body"/>
+    </joint>
+
+
+    <link name="main_body">
+      <inertial>
+        <origin xyz="9.0274E-05 -0.00041659 0.019845" rpy="0 0 0" />
+        <mass value="0.063515" />
+        <inertia ixx="3.2227E-05" ixy="-2.691E-07" ixz="4.7122E-08" iyy="2.4227E-05" iyz="-1.2861E-06" izz="3.3868E-05" />
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://epuck_description/meshes/main_body.STL" />
+        </geometry>
+        <material name="light_grey">
+          <color rgba="0.8 0.8 0.8 0.5"/>
+        </material>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://epuck_description/meshes/main_body.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="left_wheel">
+      <inertial>
+        <origin xyz="-0.00048709 -3.5245E-18 2.4286E-17" rpy="0 0 0" />
+        <mass value="0.0040981" />
+        <inertia ixx="8.267E-07" ixy="-9.8761E-23" ixz="-8.6429E-13" iyy="4.304E-07" iyz="-2.3376E-22" izz="4.304E-07" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://epuck_description/meshes/left_wheel.STL" />
+        </geometry>
+        <material name="black">
+            <color rgba="0.0 0.0 0.0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://epuck_description/meshes/left_wheel.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="left_joint" type="continuous">
+      <origin xyz="0.0278 0 0.02" rpy="0 0 0" />
+      <parent link="main_body" />
+      <child link="left_wheel" />
+      <axis xyz="1 0 0" />
+      <limit effort="0.001" velocity="10" />
+    </joint>
+
+    <link name="right_wheel">
+
+      <inertial>
+        <origin xyz="0.00065056 4.0415E-18 7.2858E-17" rpy="0 0 0" />
+        <mass value="0.0038059" />
+        <inertia ixx="8.2274E-07" ixy="-1.0753E-22" ixz="8.6429E-13" iyy="4.2585E-07" iyz="2.3307E-22" izz="4.2585E-07" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://epuck_description/meshes/right_wheel.STL" />
+        </geometry>
+        <material name="black">
+            <color rgba="0.0 0.0 0.0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://epuck_description/meshes/right_wheel.STL" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- IR 2 mounted far right  -->
+
+    <joint name="laser_IR2_joint" type="fixed">
+        <axis xyz="0 0 1" />
+        <!-- <origin xyz="0 0 0.05596" rpy="0 0 0"/> -->
+        <origin xyz="0.035 0 0.032" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="laser_IR2"/>
+    </joint>
+
+    <link name="laser_IR2">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <box size="0.00001 0.00001 0.00001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+    <!-- IR 1 mounted mid right  -->
+    <joint name="laser_IR1_joint" type="fixed">
+        <axis xyz="0 0 1" />
+        <!-- <origin xyz="0 0 0.05596" rpy="0 0 0"/> -->
+        <origin xyz="0.0206 0.0206 0.032" rpy="0 0 0.628"/>
+        <parent link="base_link"/>
+        <child link="laser_IR1"/>
+    </joint>
+
+
+    <link name="laser_IR1">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <box size="0.00001 0.00001 0.00001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+
+
+
+    <!-- IR 0 mounted mid right  -->
+    <joint name="laser_IR0_joint" type="fixed">
+        <axis xyz="0 0 1" />
+        <!-- <origin xyz="0 0 0.05596" rpy="0 0 0"/> -->
+        <origin xyz="0.0108 0.0333 0.032" rpy="0 0 1.256"/>
+        <parent link="base_link"/>
+        <child link="laser_IR0"/>
+    </joint>
+
+
+    <link name="laser_IR0">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <box size="0.00001 0.00001 0.00001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+    <!-- IR 7 mounted mid right  -->
+    <joint name="laser_IR7_joint" type="fixed">
+        <axis xyz="0 0 1" />
+        <!-- <origin xyz="0 0 0.05596" rpy="0 0 0"/> -->
+        <origin xyz="-0.0108 0.0333 0.032" rpy="0 0 1.884"/>
+        <parent link="base_link"/>
+        <child link="laser_IR7"/>
+    </joint>
+
+
+    <link name="laser_IR7">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <box size="0.00001 0.00001 0.00001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+    <!-- IR 6 mounted mid right  -->
+    <joint name="laser_IR6_joint" type="fixed">
+        <axis xyz="0 0 1" />
+        <!-- <origin xyz="0 0 0.05596" rpy="0 0 0"/> -->
+        <origin xyz="-0.0206 0.0206 0.032" rpy="0 0 2.512"/>
+        <parent link="base_link"/>
+        <child link="laser_IR6"/>
+    </joint>
+
+
+    <link name="laser_IR6">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <box size="0.00001 0.00001 0.00001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+        <!-- IR 2 mounted far right  -->
+
+    <joint name="laser_IR5_joint" type="fixed">
+        <axis xyz="0 0 1" />
+        <!-- <origin xyz="0 0 0.05596" rpy="0 0 0"/> -->
+        <origin xyz="-0.035 0 0.032" rpy="0 0 3.14"/>
+        <parent link="base_link"/>
+        <child link="laser_IR5"/>
+    </joint>
+
+    <link name="laser_IR5">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <box size="0.00001 0.00001 0.00001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+
+
+<joint name="right_joint" type="continuous">
+    <origin xyz="-0.0278 0 0.02" rpy="0 0 0" />
+    <parent link="main_body" />
+    <child link="right_wheel" />
+    <axis xyz="1 0 0" />
+    <limit effort="0.001" velocity="10" />
+</joint>
+
+<gazebo reference="right_wheel">
+    <selfCollide>true</selfCollide>
+    <mu1>10</mu1>
+    <mu2>10</mu2>
+</gazebo>
+
+<gazebo reference="left_wheel">
+    <selfCollide>true</selfCollide>
+    <mu1>10</mu1>
+    <mu2>10</mu2>
+</gazebo>
+
+<gazebo>
+  <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+    <alwaysOn>true</alwaysOn>
+    <updateRate>100.0</updateRate>
+    <bodyName>base_link</bodyName>
+    <topicName>position</topicName>
+    <gaussianNoise>0</gaussianNoise>
+    <frameName>map</frameName>
+    <xyzOffsets>0 0 0</xyzOffsets> 
+    <rpyOffsets>0 0 0</rpyOffsets>
+    <interface:position name="p3d_base_position"/>
+  </plugin>
+</gazebo>
+
+ <!-- hokuyo -->
+  <gazebo reference="laser_IR2">
+    <sensor type="ray" name="hokuyo_laser_IR2">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>100.0</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>1</samples>
+            <resolution>1</resolution>
+            <min_angle>0</min_angle>
+            <max_angle>3.14</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.01</min>
+          <max>0.1</max>
+          <resolution>1</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="hokuyo_node" filename="libgazebo_ros_laser.so">
+        <topicName>scan_IR2</topicName>
+        <frameName>laser_IR2</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+    <!-- hokuyo -->
+    <gazebo reference="laser_IR1">
+        <sensor type="ray" name="hokuyo_laser_IR1">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>100.0</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>1</samples>
+                        <resolution>1</resolution>
+                        <min_angle>0</min_angle>
+                        <max_angle>3.14</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.01</min>
+                    <max>0.1</max>
+                    <resolution>1</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <!-- Noise parameters based on published spec for Hokuyo laser
+                    achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+                    stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+                    reading. -->
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+            </ray>
+            <plugin name="hokuyo_node" filename="libgazebo_ros_laser.so">
+                <topicName>scan_IR1</topicName>
+                <frameName>base_laser_IR1</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+    <!-- hokuyo -->
+    <gazebo reference="laser_IR0">
+        <sensor type="ray" name="hokuyo_laser_IR0">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>100.0</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>1</samples>
+                        <resolution>1</resolution>
+                        <min_angle>0</min_angle>
+                        <max_angle>3.14</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.01</min>
+                    <max>0.1</max>
+                    <resolution>1</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <!-- Noise parameters based on published spec for Hokuyo laser
+                    achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+                    stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+                    reading. -->
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+            </ray>
+            <plugin name="hokuyo_node" filename="libgazebo_ros_laser.so">
+                <topicName>scan_IR0</topicName>
+                <frameName>base_laser_IR0</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+    <!-- hokuyo -->
+    <gazebo reference="laser_IR7">
+        <sensor type="ray" name="hokuyo_laser_IR7">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>100.0</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>1</samples>
+                        <resolution>1</resolution>
+                        <min_angle>0</min_angle>
+                        <max_angle>3.14</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.01</min>
+                    <max>0.1</max>
+                    <resolution>1</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <!-- Noise parameters based on published spec for Hokuyo laser
+                    achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+                    stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+                    reading. -->
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+            </ray>
+            <plugin name="hokuyo_node" filename="libgazebo_ros_laser.so">
+                <topicName>scan_IR7</topicName>
+                <frameName>base_laser_IR7</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+    <!-- hokuyo -->
+    <gazebo reference="laser_IR6">
+        <sensor type="ray" name="hokuyo_laser_IR6">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>100.0</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>1</samples>
+                        <resolution>1</resolution>
+                        <min_angle>0</min_angle>
+                        <max_angle>3.14</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.01</min>
+                    <max>0.1</max>
+                    <resolution>1</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <!-- Noise parameters based on published spec for Hokuyo laser
+                    achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+                    stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+                    reading. -->
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+            </ray>
+            <plugin name="hokuyo_node" filename="libgazebo_ros_laser.so">
+                <topicName>scan_IR6</topicName>
+                <frameName>base_laser_IR6</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+
+    <!-- hokuyo -->
+    <gazebo reference="laser_IR5">
+        <sensor type="ray" name="hokuyo_laser_IR5">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>100.0</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>1</samples>
+                        <resolution>1</resolution>
+                        <min_angle>0</min_angle>
+                        <max_angle>3.14</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.01</min>
+                    <max>0.1</max>
+                    <resolution>1</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <!-- Noise parameters based on published spec for Hokuyo laser
+                    achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+                    stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+                    reading. -->
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+            </ray>
+            <plugin name="hokuyo_node" filename="libgazebo_ros_laser.so">
+                <topicName>scan_IR5</topicName>
+                <frameName>base_laser_IR5</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+
+<gazebo>
+  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+    <alwaysOn>true</alwaysOn>
+    <legacyMode>false</legacyMode>
+    <updateRate>100</updateRate>
+    <leftJoint>left_joint</leftJoint>
+    <rightJoint>right_joint</rightJoint>
+    <wheelSeparation>0.05398</wheelSeparation>
+    <wheelDiameter>0.040</wheelDiameter>
+    <torque>2</torque>
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom_diffdrive</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <publishWheelTF>true</publishWheelTF>
+    <wheelAcceleration>0</wheelAcceleration>    <!-- IR 2 mounted far right  -->
+
+    <joint name="laser_IR2_joint" type="fixed">
+        <axis xyz="0 0 1" />
+        <!-- <origin xyz="0 0 0.05596" rpy="0 0 0"/> -->
+        <origin xyz="0.035 0 0.032" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="laser_IR2"/>
+    </joint>
+
+    <link name="laser_IR2">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+            <box size="0.00001 0.00001 0.00001"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+    <wheelTorque>0.0020</wheelTorque>
+    <publishTf>1</publishTf>
+    <odometrySource>1</odometrySource>
+    <publishWheelJointState>true</publishWheelJointState>
+    <robotMainFrame>footprint</robotMainFrame>
+    <robotBaseFrame>base_link</robotBaseFrame>
+  </plugin>
+</gazebo>
+
+
+<transmission name ="right_motor_t">
+ <type>transmission_interface/SimpleTransmission</type>
+ <joint name="right_joint">
+  <hardwareInterface>EffortJointInterface</hardwareInterface>
+ </joint>
+ <actuator name="right_motor_m">
+  <hardwareInterface>EffortJointInterface</hardwareInterface>
+ <mechanicalReduction>50</mechanicalReduction>
+ </actuator>
+</transmission>
+
+<transmission name ="left_motor_t">
+ <type>transmission_interface/SimpleTransmission</type>
+ <joint name="left_joint">
+  <hardwareInterface>EffortJointInterface</hardwareInterface>
+ </joint>
+ <actuator name="left_motor_m">
+  <hardwareInterface>EffortJointInterface</hardwareInterface>
+ <mechanicalReduction>50</mechanicalReduction>
+ </actuator>
+</transmission>
+
+<gazebo>
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+   <robotNamespace>/epuck</robotNamespace>
+   <alwaysOn>true</alwaysOn>
+   <updateRate>1000.0</updateRate>
+  </plugin>
+</gazebo>
+</robot>
+
