@@ -1,0 +1,2 @@
+epuck_2dnav:epuck_control:epuck_description:epuck_gazebo:laser_scan:world_description
+-DCATKIN_DEVEL_PREFIX=/home/siobhan/PhDSims/Epuck-Swarm-ROS/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/siobhan/PhDSims/Epuck-Swarm-ROS/catkin_ws/install -G Unix Makefiles

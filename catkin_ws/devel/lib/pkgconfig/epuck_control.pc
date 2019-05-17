@@ -1,0 +1,8 @@
+prefix=/home/siobhan/PhDSims/Epuck-Swarm-ROS/catkin_ws/devel
+
+Name: epuck_control
+Description: Description of epuck_control
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/siobhan/PhDSims/Epuck-Swarm-ROS/catkin_ws/devel/lib 
+Requires: 

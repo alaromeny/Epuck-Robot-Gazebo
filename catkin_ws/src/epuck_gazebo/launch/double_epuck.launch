@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<launch>
+
+	<param name="robot_description" textfile="$(find epuck_description)/robots/epuckModified.URDF" />  
+
+ 	<include file="$(find epuck_gazebo)/launch/labWorld.launch">
+    	<!-- <arg name="world_name" value="worlds/labWorld.launch"/> -->
+    	<arg name="paused" value="false"/>
+	    <arg name="gui" value="true"/>
+	    <arg name="headless" value="true"/>
+		<arg name="use_sim_time" value="true"/>
+		<arg name="debug" value="false"/>
+	</include>
+
+
+	<include file="$(find epuck_gazebo)/launch/spawn_epuck.launch">
+	    <arg name="robot_namespace" value="epuck_01"/>
+	    <arg name="pose_y" value="0"/>
+	</include>
+
+	<include file="$(find epuck_gazebo)/launch/spawn_epuck.launch">
+	    <arg name="robot_namespace" value="epuck_02"/>
+	    <arg name="pose_y" value="0.2"/>
+	</include>
+
+<!-- 	<include file="$(find epuck_gazebo)/launch/spawn_epuck.launch">
+	    <arg name="robot_namespace" value="epuck_03"/>
+	    <arg name="pose_y" value="0.4"/>
+	</include>
+
+	<include file="$(find epuck_gazebo)/launch/spawn_epuck.launch">
+	    <arg name="robot_namespace" value="epuck_04"/>
+	    <arg name="pose_y" value="0.6"/>
+	</include> -->
+	
+<!-- 	  <param name="world_description" textfile="$(find world_description)/robots/labWorld.urdf" /> 
+
+  <node name="spawn_arena" pkg="gazebo_ros" type="spawn_model" args="-file $(find world_description)/robots/labWorld.urdf -urdf -model world -x 5 -z 0" /> -->
+
+	<!-- <param name="robot_description" textfile="$(find world_description)/robots/world.urdf" />  -->
+
+	<!-- <node name="spawn_world" pkg="gazebo_ros" type="spawn_model" args="-file $(find world_description)/robots/world.urdf -urdf -model world -z 0" />
+ -->
+</launch>
+
